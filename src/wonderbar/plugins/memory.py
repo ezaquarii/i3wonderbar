@@ -1,24 +1,23 @@
 from wonderbar.theme import *
 
+from . import Plugin
 
-class MemoryPlugin(object):
+
+class MemoryPlugin(Plugin):
     def __init__(self):
-        self._refresh = None
+        super().__init__()
         try:
             import psutil
             self._virtual_memory = psutil.virtual_memory
         except ModuleNotFoundError:
             self._virtual_memory = None
 
-    def register_refresh_callback(self, refresh):
-        self._refresh = refresh
-
     @property
     def status(self):
         if not self._virtual_memory:
             return []
         else:
-            mem = self._virtual_memory().percent
+            mem = int(self._virtual_memory().percent)
             status = f"\uF2DB {mem}%"
 
             if mem < 50:

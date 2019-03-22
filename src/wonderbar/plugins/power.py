@@ -2,10 +2,11 @@ import asyncio
 from collections import deque
 from wonderbar.theme import *
 
+from . import Plugin
 
-class PowerPlugin(object):
+class PowerPlugin(Plugin):
     def __init__(self):
-        self._refresh = None
+        super().__init__()
         self._times = deque()
         self._avg_time_left = 0
         self._power_left = 100
@@ -17,9 +18,6 @@ class PowerPlugin(object):
         except ModuleNotFoundError:
             self._sensors_battery = None
 
-    def register_refresh_callback(self, refresh):
-        self._refresh = refresh
-
     def update_battery_status(self):
         battery = self._sensors_battery()
         self._times.append(int(battery.secsleft))
@@ -30,7 +28,6 @@ class PowerPlugin(object):
         should_refresh_immediately = self._is_charging != battery.power_plugged
         self._is_charging = battery.power_plugged
         return should_refresh_immediately
-
 
     @property
     def status(self):
@@ -67,5 +64,5 @@ class PowerPlugin(object):
         while True:
             refresh = self.update_battery_status()
             if refresh:
-                self._refresh(self)
+                self.refresh()
             await asyncio.sleep(5)

@@ -1,4 +1,3 @@
-
 class Plugin(object):
     """Base plugin class. All plugins should implement this interface."""
 
@@ -24,7 +23,7 @@ class Plugin(object):
 
     def refresh(self):
         if self.__refresh:
-            self.__refresh()
+            self.__refresh(self)
 
     async def run(self):
         """

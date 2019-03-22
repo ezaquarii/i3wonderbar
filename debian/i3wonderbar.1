@@ -1,0 +1,57 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" (C) Copyright 2019 Chris Narkiewicz <hello@ezaquarii.com>,
+.\"
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH i3wonderbar 1 "March 22 2019"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+i3wonderbar \- hackable i3status extender/replacement for i3 window manager
+.SH SYNOPSIS
+.B i3wonderbar
+.RI [--i3-status-config " file"]
+.SH DESCRIPTION
+A hackable i3status wrapper written in Python.
+
+This script allows you to replace or extend i3status with your
+own statuses in a cThis manual page documents briefly thelean way.
+
+.B i3status
+documentation advises to wrap it in shell script and append
+more data to the output, but this approach relies on polling.
+.B i3wonderbar
+uses
+.B i3status
+AND is event-driven, thanks to asyncio.
+
+.PP
+
+.SH OPTIONS
+
+.TP
+.B \-h, \-\-help
+Show summary of options.
+
+.TP
+.B \-v, \-\-version
+Show version of program.
+
+.TP
+.B \-\-i3status-config
+Supply config file for
+.B i3status
+
+.SH SEE ALSO
+.BR i3bar (1)

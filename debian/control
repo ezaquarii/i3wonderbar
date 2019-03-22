@@ -1,0 +1,27 @@
+Source: i3wonderbar
+Section: utils
+Priority: optional
+Maintainer: Chris Narkiewicz <hello@ezaquarii.com>
+Build-Depends: debhelper (>= 10)
+             , python3 (>= 3.6)
+             , dh-python (>= 3)
+Standards-Version: 4.1.2
+Homepage: https://github.com/ezaquarii/i3wonderbar
+Vcs-Git: https://github.com/ezaquarii/i3wonderbar
+
+Package: i3wonderbar
+Architecture: any
+Enhances: i3-wm
+Depends: ${shlibs:Depends}, ${misc:Depends}
+       , python3
+       , python3-psutil
+       , python3-networkmanager
+       , python3-dbus
+Description: Hackable i3status extender/replacement for i3 window manager
+ A hackable i3status wrapper written in Python.
+ This script allows you to replace or extend i3status
+ with your own statuses in a clean way. i3status
+ documentation advises to wrap it in shell script and
+ append more data to the output, but this approach
+ relies on polling. Wonderbar uses i3status AND is
+ event-driven, thanks to asyncio.

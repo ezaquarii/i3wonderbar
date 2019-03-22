@@ -1,27 +1,15 @@
 import asyncio
+from . import Plugin
 
 
-class DemoPlugin(object):
+class DemoPlugin(Plugin):
     """
     Very simple demo plugin that prints "demo 1", "demo 2", etc
     in your i3bar. It demonstrates how to write asynchronous plugins.
     """
     def __init__(self):
-        self._refresh = None
+        super().__init__()
         self.count = 0
-
-    def register_refresh_callback(self, refresh):
-        """
-        This method is called by Wonderbar to inject update trigger.
-        You should call on_update() when your plugin state changes,
-        forcing Wonderbar to refresh.
-
-        Refresh callback accepts single argument - the plugin instance.
-        This can be used during debugging.
-
-        :param refresh: function(plugin)
-        """
-        self._refresh = refresh
 
     @property
     def status(self):
@@ -43,4 +31,4 @@ class DemoPlugin(object):
         while True:
             await asyncio.sleep(1)
             self.count = self.count+1
-            self._refresh(self)
+            self.refresh()
